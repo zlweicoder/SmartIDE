@@ -795,15 +795,15 @@ spec:
       containers:
       - args:
         - /nginx-ingress-controller
-        - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
+        - --publish-service=\$(POD_NAMESPACE)/ingress-nginx-controller
         - --election-id=ingress-controller-leader
         - --controller-class=k8s.io/ingress-nginx
         - --ingress-class=nginx
-        - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
+        - --configmap=\$(POD_NAMESPACE)/ingress-nginx-controller
         - --validating-webhook=:8443
         - --validating-webhook-certificate=/usr/local/certificates/cert
         - --validating-webhook-key=/usr/local/certificates/key
-        - --tcp-services-configmap=$(POD_NAMESPACE)/ingress-nginx-tcp
+        - --tcp-services-configmap=\$(POD_NAMESPACE)/ingress-nginx-tcp
         - --default-ssl-certificate=default/ws.smartide.cn
         env:
         - name: POD_NAME
@@ -905,8 +905,8 @@ spec:
       containers:
       - args:
         - create
-        - --host=ingress-nginx-controller-admission,ingress-nginx-controller-admission.$(POD_NAMESPACE).svc
-        - --namespace=$(POD_NAMESPACE)
+        - --host=ingress-nginx-controller-admission,ingress-nginx-controller-admission.\$(POD_NAMESPACE).svc
+        - --namespace=\$(POD_NAMESPACE)
         - --secret-name=ingress-nginx-admission
         env:
         - name: POD_NAMESPACE
@@ -953,7 +953,7 @@ spec:
       - args:
         - patch
         - --webhook-name=ingress-nginx-admission
-        - --namespace=$(POD_NAMESPACE)
+        - --namespace=\$(POD_NAMESPACE)
         - --patch-mutating=false
         - --secret-name=ingress-nginx-admission
         - --patch-failure-policy=Fail
