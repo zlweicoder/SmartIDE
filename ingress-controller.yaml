@@ -804,7 +804,6 @@ spec:
         - --validating-webhook-certificate=/usr/local/certificates/cert
         - --validating-webhook-key=/usr/local/certificates/key
         - --tcp-services-configmap=\$(POD_NAMESPACE)/ingress-nginx-tcp
-        - --default-ssl-certificate=default/ws.smartide.cn
         env:
         - name: POD_NAME
           valueFrom:
